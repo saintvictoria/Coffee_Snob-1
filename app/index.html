@@ -40,13 +40,15 @@
 
     <script type="text/template" id="listTemp">
       <li class="card" id="<%= _id %>">
-        <div class="card-header"><%= name %> by <%= brand %></div>
-        <% if(comments !== '') { %>
-            <div class="card-copy"><p><%= comments %></p></div>
-        <% } %>
-        <% if(rating !== '') { %>
-            <div class="card-stats">Rating:</div>
-        <% } %>
+        <a href="#/edit/<%= _id %>">
+          <div class="card-header"><%= name %> by <%= brand %></div>
+          <% if(comments !== '') { %>
+              <div class="card-copy"><p><%= comments %></p></div>
+          <% } %>
+          <% if(rating !== '') { %>
+              <div class="card-stats">Rating:</div>
+          <% } %>
+        </a>
       </li>
     </script>
 
@@ -60,6 +62,7 @@
                 <textarea id="update_comments"><%= comments %></textarea>
             </div>
             <button>Update Coffee</button>
+            <button id="delete">Delete</button>
         </form>
       </li>
     </script>

@@ -29,6 +29,10 @@ body {
   }
 }
 
+#delete {
+  background-color: hsla(349,100%,43%,1);
+}
+
 .coffeeList {
   @include clearfix;
 }
