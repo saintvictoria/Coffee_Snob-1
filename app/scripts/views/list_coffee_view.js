@@ -12,8 +12,8 @@
     initialize: function () {
       this.render();
 
+      this.collection.off();
       this.collection.on('sync', this.render, this);
-      this.collection.on('destroy', this.render, this);
 
       // Get our Element On Our Page
       $('#coffeeList').html(this.$el);

@@ -2,14 +2,14 @@
 
   App.Views.AddCoffee = Backbone.View.extend({
 
-    el: '#coffeeForm',
-
     events: {
       'submit #addCoffee' : 'addCoffee'
     },
 
     initialize: function () {
       this.render();
+
+      $('#coffeeForm').html(this.$el);
     },
 
     render: function () {
