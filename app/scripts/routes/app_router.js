@@ -18,7 +18,10 @@
     },
 
     editCoffee: function (id) {
-      console.log('Showing Edit Function For ' + id);
+
+      var c = App.coffees.get(id);
+
+      new App.Views.SingleCoffee({ coffee: c });
     }
 
   });
