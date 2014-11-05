@@ -18,7 +18,14 @@
 
     addCoffee: function (e) {
       e.preventDefault();
-      console.log('Added');
+      
+      var c = new App.Models.Coffee({
+        name: $('#coffee_name').val(),
+        brand: $('#coffee_brand').val()
+      });
+
+      App.coffees.add(c).save();
+
     }
 
   });
