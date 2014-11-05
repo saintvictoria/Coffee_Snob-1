@@ -41,8 +41,12 @@
     <script type="text/template" id="listTemp">
       <li class="card" id="<%= _id %>">
         <div class="card-header"><%= name %> by <%= brand %></div>
-        <div class="card-copy"><p><%= comments %></p></div>
-        <div class="card-stats">Rating:</div>
+        <% if(comments !== '') { %>
+            <div class="card-copy"><p><%= comments %></p></div>
+        <% } %>
+        <% if(rating !== '') { %>
+            <div class="card-stats">Rating:</div>
+        <% } %>
       </li>
     </script>
 
@@ -68,6 +72,7 @@
     <script src="scripts/collections/coffee_collection.js"></script>
     <script src="scripts/views/add_coffee_view.js"></script>
     <script src="scripts/views/list_coffee_view.js"></script>
+    <script src="scripts/routes/app_router.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 </body>
