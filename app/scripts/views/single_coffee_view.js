@@ -37,11 +37,16 @@
       this.options.coffee.set({
         name: $('#update_name').val(),
         brand: $('#update_brand').val(),
-        comments: $('#update_comments').val()
+        comments: $('#update_comments').val(),
+        rating: $('input[name="rating"]:checked').val()
       });
 
       // Save Instance
-      this.options.coffee.save();
+      this.options.coffee.save(null, {
+        success: function (){
+          App.router.navigate('', {trigger: true});
+        }
+      });
 
       // Go back to our home page
       App.router.navigate('', {trigger: true});

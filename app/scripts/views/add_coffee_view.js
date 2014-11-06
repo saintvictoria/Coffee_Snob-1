@@ -9,7 +9,7 @@
     initialize: function () {
       this.render();
 
-      $('#coffeeForm').html(this.$el);
+      $('#coffeeList').html(this.$el);
     },
 
     render: function () {
@@ -18,13 +18,19 @@
 
     addCoffee: function (e) {
       e.preventDefault();
-      
+
       var c = new App.Models.Coffee({
         name: $('#coffee_name').val(),
         brand: $('#coffee_brand').val()
       });
 
-      App.coffees.add(c).save();
+      App.coffees.add(c).save(null, {
+        success: function() {
+          $('#addCoffee')[0].reset();
+          App.router.navigate('', { trigger: true });
+        }
+      });
+
 
     }
 
