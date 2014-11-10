@@ -47,14 +47,15 @@
       <li class="card" id="<%= objectId %>">
         <a href="#/edit/<%= objectId %>">
           <div class="card-header"><%= name %> by <%= brand %></div>
-          <% if(comments !== '') { %>
-              <div class="card-copy"><p><%= comments %></p></div>
-          <% } %>
           <% if(rating !== '') { %>
               <div class="card-stats"><%= rating %> Star Rating</div>
           <% } %>
         </a>
       </li>
+    </script>
+
+    <script type="text/template" id="commentTemp">
+      <li><%= commentText %></li>
     </script>
 
     <script type="text/template" id="singleTemp">
@@ -63,7 +64,6 @@
             <div class="card-header">
               <input type="text" value="<%= name %>" id="update_name" />
               <input type="text" value="<%= brand %>" id="update_brand" />
-              <textarea id="update_comments"><%= comments %></textarea>
             </div>
             <div class="button-group">
               <label>
@@ -92,6 +92,12 @@
               <button id="delete">Delete</button>
             </div>
         </form>
+
+        <form id="addComment">
+          <textarea id="commentText" placeholder="Add Your Comment"></textarea>
+          <button>Add Comment</button>
+
+        </form>
       </li>
     </script>
 
@@ -115,6 +121,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/models/coffee_model.js"></script>
+    <script src="scripts/models/comments_model.js"></script>
     <script src="scripts/collections/coffee_collection.js"></script>
     <script src="scripts/views/add_coffee_view.js"></script>
     <script src="scripts/views/list_coffee_view.js"></script>

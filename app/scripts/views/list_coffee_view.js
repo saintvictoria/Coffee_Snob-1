@@ -28,6 +28,10 @@
     render: function () {
       var self = this;
 
+      var comment_query = new Parse.Query(App.Models.Comment);
+      var commentTemplate = _.template($('#commentTemp').html());
+
+
       // Empty out
       this.$el.empty();
 
@@ -45,6 +49,18 @@
         this.collection.sort();
         this.collection.each(function (c) {
           self.$el.append(self.template(c.toJSON()));
+          self.$el.append('<ul id="'+ c.id +'"></ul>');
+
+           comment_query.equalTo('parent', c);
+           comment_query.find({
+             success: function(results) {
+
+               _.each(results, function (comment){
+                 $('ul#'+c.id).append(commentTemplate(comment.toJSON()));
+               });
+
+             }
+           });
         });
       }
 

@@ -7,7 +7,8 @@
 
     events: {
       'submit #updateCoffee' : 'updateCoffee',
-      'click #delete' : 'deleteCoffee'
+      'click #delete' : 'deleteCoffee',
+      'submit #addComment': 'addComment'
     },
 
     template: _.template($('#singleTemp').html()),
@@ -28,6 +29,41 @@
 
       this.$el.html(this.template(this.options.coffee.toJSON()));
 
+            var commentTemplate = _.template($('#commentTemp').html());
+      var comments_query = new Parse.Query(App.Models.Comment);
+      comments_query.equalTo('parent', this.options.coffee);
+
+      this.$el.append('<h2>Comments</h2><ul class="comments"></ul>');
+
+      comments_query.find({
+        success: function (results) {
+
+          _.each(results, function(comment) {
+            $('ul.comments').append(commentTemplate(comment.toJSON()));
+          })
+
+        }
+      })
+
+    },
+
+    addComment: function (e) {
+      e.preventDefault();
+
+      var comment = new App.Models.Comment({
+
+        commentText: $('#commentText').val(),
+        parent: this.options.coffee
+
+      });
+
+      comment.save(null, {
+        success: function () {
+          console.log('Comment has been added');
+          App.router.navigate('', {trigger: true});
+        }
+      });
+
     },
 
     updateCoffee: function (e) {
@@ -37,18 +73,13 @@
       this.options.coffee.set({
         name: $('#update_name').val(),
         brand: $('#update_brand').val(),
-        comments: $('#update_comments').val(),
         rating: $('input[name="rating"]:checked').val()
       });
 
       // Save Instance
-      this.options.coffee.save(null, {
-        success: function (){
-          App.router.navigate('', {trigger: true});
-        }
-      });
+      this.options.coffee.save();
 
-      // Go back to our home page
+      // TODO - Check on promise
       App.router.navigate('', {trigger: true});
 
     },
