@@ -1,10 +1,10 @@
 (function () {
 
-  App.Routers.AppRouter = Backbone.Router.extend({
+  App.Routers.AppRouter = Parse.Router.extend({
 
     initialize: function () {
       // Light the Fire
-      Backbone.history.start();
+      Parse.history.start();
     },
 
     routes: {

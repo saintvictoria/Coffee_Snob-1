@@ -1,8 +1,10 @@
 (function () {
 
-  App.Models.Coffee = Backbone.Model.extend({
+  App.Models.Coffee = Parse.Object.extend({
 
-    idAttribute: '_id',
+    className: 'Coffee',
+
+    idAttribute: 'objectId',
 
     defaults: {
       name: '',

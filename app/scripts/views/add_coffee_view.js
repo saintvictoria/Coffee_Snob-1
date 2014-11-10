@@ -1,6 +1,6 @@
 (function () {
 
-  App.Views.AddCoffee = Backbone.View.extend({
+  App.Views.AddCoffee = Parse.View.extend({
 
     events: {
       'submit #addCoffee' : 'addCoffee'
@@ -24,12 +24,20 @@
         brand: $('#coffee_brand').val()
       });
 
-      App.coffees.add(c).save(null, {
+      c.save(null, {
+        success: function(){
+          App.coffees.add(c);
+          App.router.navigate('', {trigger: true});
+        }
+      })
+
+      /*App.coffees.add(c).save(null, {
         success: function() {
           $('#addCoffee')[0].reset();
-          App.router.navigate('', { trigger: true });
+           App.router.navigate('', { trigger: true });
         }
-      });
+       });
+      */
 
 
     }

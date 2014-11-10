@@ -1,6 +1,6 @@
 (function () {
 
-  App.Views.ListCoffee = Backbone.View.extend({
+  App.Views.ListCoffee = Parse.View.extend({
 
     tagName: 'ul',
     className: 'allCoffees',
